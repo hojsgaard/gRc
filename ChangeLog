@@ -1,0 +1,96 @@
+2003-11-24 Søren Højsgaard <sorenh@math.aau.dk>
+
+	* The package was removed from CRAN; new version created to get
+	package back on CRAN again
+
+	* Version 0.4-1 uploaded	
+
+2003-20-03 Søren Højsgaard <sorenh@math.aau.dk>
+
+	* citation file, namespace file added; affiliation changed
+	
+	* Version 0.4-0 uploaded
+	
+2008-09-09 Søren Højsgaard <sorenh@agrsci.d>
+
+	* Scorematching (for RCON models) implemented in C
+
+	* Version 0.3.0 uploaded
+
+
+2008-07-13 Søren Højsgaard <sorenh@agrsci.d>
+
+	* Taken into account that Rgraphviz may not be installed...
+
+	* 'ipms' estimation method added
+
+	* Various optimizations
+
+	* Rgraphviz is no longer required, but if it is installed then
+	plot() will produce graphs.
+
+	* Version 0.2.2 uploaded
+
+2008-05-07 Søren Højsgaard <sorenh@agrsci.d>
+
+	* ipm algorithm for RCON optimized
+
+	* Version 0.2.1 uploaded 
+
+	
+2008-04-23 Søren Højsgaard <sorenh@math.aau.dk>
+
+	* ipm algorithm for RCON models implemented in C
+
+	* trXXXX functions implemented in C
+
+	* Various other optimizations
+	
+	* Version 0.2.0 uploaded 
+
+	
+2008-03-11 Søren Højsgaard <sorenh@math.aau.dk>
+
+	* fit method matches generic fit function from gRbase
+
+	* Version 0.1.4 uploaded 
+
+	
+2008-03-10 Søren Højsgaard <sorenh@math.aau.dk>
+
+	* Minor bugs fixed
+
+	* Version 0.1.3 uploaded
+
+
+2008-01-08 Søren Højsgaard <sorenh@math.aau.dk>
+
+	* Bug fixed so that also unfitted models can be plotted
+
+	* extractIndexMatrix has been implemented in C (there remains an
+	issue of that the matrices are converted to doubles to get the
+	code to work. That should not be necessary?)
+
+	* Some trace functions are implemented in C
+
+	* Finding standard representation has been speeded up
+
+	* stepjoin1 now accepts a scope argument (stepsplit1 does not - yet!)
+
+	* Various minor bugs fixed.
+
+	* Version 0.1.2 uploaded
+
+
+2007-12-27 Søren Højsgaard <sorenh@math.aau.dk>
+
+	* Some output has been modified
+
+	* Model objects changed from class RCOX to class rcox
+	
+	* gRc version 0.1.1 uploaded
+
+
+2007-12-20 Søren Højsgaard <sorenh@math.aau.dk>
+
+	* gRc version 0.1.0 uploaded to CRAN

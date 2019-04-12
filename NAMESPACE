@@ -1,0 +1,66 @@
+useDynLib(gRc)
+exportPattern("^[^\\.]")
+
+importFrom("grDevices", "heat.colors", "topo.colors")
+importFrom("graphics", "plot")
+importFrom("methods", "new")
+importFrom("stats", "as.formula", "coef", "cov", "cov2cor", "pchisq",
+           "update", "vcov")
+importFrom("MASS", "mvrnorm")
+importFrom(gRbase, ellK, fit, names2pairs, removeRedundant, rowSumsPrim,
+           setdiffPrim, subsetof, uniquePrim, unlistPrim)
+
+S3method(add1, rcox)
+S3method(coef, rcox)
+S3method(drop1, rcox)
+S3method(fit, rcox)
+S3method(plot, rcox)
+S3method(print, atom)
+S3method(print, cc)
+S3method(print, cclist)
+S3method(print, colourClass)
+S3method(print, rcox)
+S3method(print, statTable)
+S3method(print, summary.rcox)
+S3method(summary, rcox)
+S3method(update, rcox)
+S3method(vcov, rcox)
+
+S3method(K2theta, rcon)
+S3method(K2theta, rcor)
+
+S3method(as.cc, default)
+S3method(as.cc, list)
+S3method(findKinModel, rcox)
+
+S3method(formula2names, NULL)
+S3method(formula2names, default)
+S3method(formula2names, formula)
+S3method(formula2names, list)
+
+S3method(formula2string, default)
+S3method(formula2string, list)
+
+S3method(getIndex, character)
+S3method(getIndex, default)
+S3method(getIndex, list)
+
+S3method(getScore, rcon)
+S3method(getScore, rcor)
+
+S3method(listOrder, atom)
+S3method(listOrder, cc)
+S3method(listOrder, default)
+S3method(listOrder, list)
+S3method(listOrder, numeric)
+
+S3method(names2formula, default)
+S3method(names2formula, list)
+
+S3method(theta2K, rcon)
+S3method(theta2K, rcor)
+
+S3method(toLisp, cc)
+S3method(toLisp, default)
+S3method(toLisp, list)
+

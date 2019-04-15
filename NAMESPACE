@@ -1,12 +1,12 @@
 useDynLib(gRc)
-exportPattern("^[^\\.]")
+exportPattern('^[^\\.]')
 
-importFrom("grDevices", "heat.colors", "topo.colors")
-importFrom("graphics", "plot")
-importFrom("methods", "new")
-importFrom("stats", "as.formula", "coef", "cov", "cov2cor", "pchisq",
-           "update", "vcov")
-importFrom("MASS", "mvrnorm")
+importFrom('grDevices', 'heat.colors', 'topo.colors')
+importFrom('graphics', 'plot')
+importFrom('methods', 'new')
+importFrom('stats', 'as.formula', 'coef', 'cov', 'cov2cor', 'pchisq',
+           'update', 'vcov')
+importFrom('MASS', 'mvrnorm')
 importFrom(gRbase, ellK, fit, names2pairs, removeRedundant, rowSumsPrim,
            setdiffPrim, subsetof, uniquePrim, unlistPrim)
 

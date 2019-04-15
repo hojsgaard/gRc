@@ -1,3 +1,11 @@
+2019-04-16 Søren Højsgaard <sorenh@math.aau.dk>
+
+	* The package was removed from CRAN; new version created to get
+	package back on CRAN again
+
+	* Version 0.4-3 uploaded	
+	
+
 2003-11-24 Søren Højsgaard <sorenh@math.aau.dk>
 
 	* The package was removed from CRAN; new version created to get
@@ -5,7 +13,7 @@
 
 	* Version 0.4-1 uploaded	
 
-2003-20-03 Søren Højsgaard <sorenh@math.aau.dk>
+2013-20-03 Søren Højsgaard <sorenh@math.aau.dk>
 
 	* citation file, namespace file added; affiliation changed
 	

@@ -7,7 +7,7 @@ importFrom('methods', 'new')
 importFrom('stats', 'as.formula', 'coef', 'cov', 'cov2cor', 'pchisq',
            'update', 'vcov')
 importFrom('MASS', 'mvrnorm')
-importFrom(gRbase, ellK, fit, names2pairs, removeRedundant, rowSumsPrim,
+importFrom(gRbase, ellK, fit, names2pairs, remove_redundant, rowSumsPrim,
            setdiffPrim, subsetof, uniquePrim, unlistPrim)
 
 S3method(add1, rcox)

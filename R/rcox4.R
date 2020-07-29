@@ -182,7 +182,7 @@ print.rcox <- function(x, ...){
 
   xxxx2 <- lapply(vccI, function(x3)
                    {z<-do.call("rbind",x3); z[,1]<-z[,1]*10000; rowSumsPrim(z)})
-  ri <- which(removeRedundant(xxxx2, index=TRUE)>0)
+  ri <- which(remove_redundant(xxxx2, index=TRUE)>0)
 
   vccN <- vccN[ri]
 
@@ -190,7 +190,7 @@ print.rcox <- function(x, ...){
   if (length(eccI)){
     xxxx2 <- lapply(eccI, function(x3)
                     {z<-do.call("rbind",x3); z[,1]<-z[,1]*10000; rowSumsPrim(z)})
-    ri <- which(removeRedundant(xxxx2, index=TRUE)>0)
+    ri <- which(remove_redundant(xxxx2, index=TRUE)>0)
     eccN <- eccN[ri]
   }
   

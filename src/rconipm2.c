@@ -204,7 +204,6 @@ SEXP rconipm(SEXP S, SEXP nobs, SEXP K, SEXP Glist,
   PROTECT(maxouter = coerceVector(maxouter, REALSXP)) ;
   maxouterp = REAL(maxouter);
 
-
   PROTECT(maxinner = coerceVector(maxinner, REALSXP)) ;
   maxinnerp = REAL(maxinner);
 
@@ -275,11 +274,11 @@ SEXP rconipm(SEXP S, SEXP nobs, SEXP K, SEXP Glist,
     shdunique(rG, &ngenElements, &ng, &nMAX, gcsetD);
     nc = nrK - ng;
     
-    if (ng>maxng)
+    if (ng > maxng)
       maxng = ng;
-    if (nc>maxnc)
+    if (nc > maxnc)
       maxnc = nc;
-    if (ngenElements>maxngenElements)
+    if (ngenElements > maxngenElements)
       maxngenElements = ngenElements;
     
     UNPROTECT(2);
@@ -288,9 +287,9 @@ SEXP rconipm(SEXP S, SEXP nobs, SEXP K, SEXP Glist,
   //Rprintf("nrK: %i maxngenElements: %i, maxng; %i maxnc: %i\n",
   //  nrK, maxngenElements, maxng, maxnc);
   
-  NRtmp   = (double *) R_alloc(4*maxng*maxng, sizeof(double));
-  WORK    = (double *) R_alloc(nrK*nrK, sizeof(double));
-  GSETtmp = (double *) R_alloc(4*maxngenElements, sizeof(double));    
+  NRtmp   = (double *) R_alloc(4 * maxng * maxng, sizeof(double));
+  WORK    = (double *) R_alloc(nrK * nrK, sizeof(double));
+  GSETtmp = (double *) R_alloc(4 * maxngenElements, sizeof(double));    
     
   //
   // Memory allocation done... !!
@@ -298,7 +297,7 @@ SEXP rconipm(SEXP S, SEXP nobs, SEXP K, SEXP Glist,
   if (*debugp>=1){
     shddet(rK, &nrS, &det);    //Rprintf("det %f\n", det);
     shdtraceAB(rK, &nrS, &nrS, rS, &nrS, &nrS, &trKS); // Rprintf("trKS %f\n", trKS);
-    *logLp = (*nobsp/2) * (log(det)-trKS); //-(*nobsp/2)* nrS * log(6.283185) + 
+    *logLp = (*nobsp/2) * (log(det) - trKS); //-(*nobsp/2)* nrS * log(6.283185) + 
     Rprintf(".Before iteration: %i logL: %f\n", outcount, *logLp);
     prevlogL = *logLp;
   }
@@ -328,10 +327,10 @@ SEXP rconipm(SEXP S, SEXP nobs, SEXP K, SEXP Glist,
       if (*debugp>=4){
 	shddet(Kansp, &nrS, &det);    //Rprintf("det %f\n", det);
 	shdtraceAB(Kansp, &nrS, &nrS, rS, &nrS, &nrS, &trKS); // Rprintf("trKS %f\n", trKS);
-	*logLp = (*nobsp/2) * (log(det)-trKS); //-(*nobsp/2)* nrS * log(6.283185) + 
+	*logLp = (*nobsp / 2) * (log(det) - trKS); //-(*nobsp/2)* nrS * log(6.283185) + 
 	Rprintf("....Generator %3i Inner iterations %i logL: %f\n", Gii, inner, *logLp);
       }
-      if (inner>*globalinnerp) // The maximal # of inner iterations.
+      if (inner > *globalinnerp) // The maximal # of inner iterations.
 	*globalinnerp = inner;
     }
 
@@ -341,7 +340,7 @@ SEXP rconipm(SEXP S, SEXP nobs, SEXP K, SEXP Glist,
    
     if (*debugp >= 1){
       Rprintf(".Outer iteration: %3i logL: %20.12f diff logL: %18.12f \n",
-		outcount, *logLp, *logLp-prevlogL);
+		outcount, *logLp, *logLp - prevlogL);
     } 
 
     if (outcount>1){
@@ -349,7 +348,7 @@ SEXP rconipm(SEXP S, SEXP nobs, SEXP K, SEXP Glist,
 	*convergedp = 1;
 	break;
       } else {
-	if (outcount==*maxouterp){
+	if (outcount == *maxouterp){
 	  *convergedp = 0;
 	  break;
 	}

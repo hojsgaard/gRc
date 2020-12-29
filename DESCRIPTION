@@ -1,5 +1,5 @@
 Package: gRc
-Version: 0.4-3.3
+Version: 0.4-3.6
 Title: Inference in Graphical Gaussian Models with Edge and Vertex Symmetries
 Author: Søren Højsgaard <sorenh@math.aau.dk>, Steffen L. Lauritzen <steffen@stats.ox.ac.uk>
 Maintainer: Søren Højsgaard <sorenh@math.aau.dk>
@@ -14,7 +14,6 @@ Encoding: UTF-8
 Depends: methods, gRbase (>= 1.8-5)
 Imports: MASS,
 Suggests: Rgraphviz, RBGL, microbenchmark, knitr
-URL: http://people.math.aau.dk/~sorenh/software/gR/
 Repository: CRAN
 ByteCompile: Yes
 Roxygen: list(markdown = TRUE)

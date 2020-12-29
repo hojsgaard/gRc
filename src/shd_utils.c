@@ -2,7 +2,7 @@
 #include <R.h>
 #include <stdlib.h>
 #include <R_ext/Lapack.h> 
-#include "shd_print.h";
+#include "shd_print.h"
 
 /* *** Forward declarations *** */
 

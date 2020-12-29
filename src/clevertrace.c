@@ -322,7 +322,7 @@ SEXP trAWBlist(SEXP Alist, SEXP W, SEXP Blist, SEXP mode)
   R_len_t nA = length(Alist), nB=length(Blist);
   SEXP ans;
   SEXP Aitem, Aidims, Bitem, Bidims, Wdims;
-  int nrA, ncA, nrB, ncB, nrW, ncW, ii, jj;
+  int nrA, ncA, nrB, ncB, nrW, ncW;
   int Aii, Bjj, Astart, Aend, idx;
   double  *modep;
 
@@ -392,7 +392,7 @@ SEXP trAWBW(SEXP A, SEXP W, SEXP B)
 {
   int nrA, ncA, nrW, ncW, nrB, ncB;
   /*   int k1, k2; */
-  int i, j;
+  // int i, j;
   double *rans, *rA, *rW, *rB;
   SEXP Adims, Wdims, Bdims, ans;
 
@@ -434,7 +434,7 @@ SEXP trAWBWlist(SEXP Alist, SEXP W, SEXP Blist, SEXP mode)
   R_len_t nA = length(Alist), nB=length(Blist);
   SEXP ans;
   SEXP Aitem, Aidims, Bitem, Bidims, Wdims;
-  int nrA, ncA, nrB, ncB, nrW, ncW, ii, jj;
+  int nrA, ncA, nrB, ncB, nrW, ncW;
   int Aii, Bjj, Astart, Aend, idx;
   double  *modep;
 

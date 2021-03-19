@@ -1,4 +1,5 @@
 
+#' @export
 summary.rcox <- function(object, type="coef",...){
   type  <- match.arg(type,c("coef","K","KC","ACA"))
   m     <- object
@@ -56,7 +57,7 @@ summary.rcox <- function(object, type="coef",...){
   ans
 }
 
-
+#' @export
 print.summary.rcox <- function(x, ...){
 #   cat("vcc: ", cc2str(x$vcc),"\n")
 #   cat("ecc: ", cc2str(x$ecc),"\n")
@@ -87,6 +88,7 @@ print.summary.rcox <- function(x, ...){
   return(invisible(x))
 }
 
+#' @export
 vcov.rcox <- function(object, ...){
   f1     <- fitInfo(object)
   solve(f1$J)

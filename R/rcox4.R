@@ -5,6 +5,82 @@
 ## eccV[[i]]: Colour class as vector; each element is a pair coded as a 6-digit numer
 ## vccV[[i]]: Colour class as vector; 
 
+######################################################################
+#' @title Main function for specifying RCON/RCOR models.
+#' @description This is the main function for specifying and fitting
+#'   RCON/RCOR models in the package along with certain utility
+#'   functions.
+#' @author Søren Højsgaard, \email{sorenh@@math.aau.dk}
+#' @name rcox
+######################################################################
+#'
+#' @param gm Generating class for a grapical Gaussian model, see
+#'   'Examples' for an illustration
+#' @param vcc List of vertex colour classes for the model
+#' @param ecc List of edge colour classes for the model
+#' @param type Type of model. Default is RCON
+#' @param method Estimation method; see 'Details' below. 
+#' @param fit Should the model be fitted
+#' @param data A dataframe
+#' @param S An empirical covariance matrix (as alternative to giving data
+#' as a dataframe)
+#' @param n The number of observations (which is needed if data is
+#'   specified as an empirical covariance matrix)
+#' @param Kstart An initial value for K. Can be omitted.
+#' @param control Controlling the fitting algorithms
+#' @param details Controls the amount of output
+#' @param trace Debugging info
+#' 
+#' @details
+#' 
+#'    Estimation methods:
+#' 
+#' *   'ipm' (default) is iterative partial maximization
+#'    which when finished calculates the information matrix so that
+#'    approximate variances of the parameters can be obtained using vcov().
+#' 
+#' *   'ipms' is iterative partial maximization without
+#'    calculating the information matrix. This is the fastest method.
+#'    
+#' *   'scoring' is stabilised Fisher scoring.
+#'    
+#' *   'matching' is score matching followed by one step with Fisher
+#'    scoring.  
+#' 
+#' *   'hybrid1' is for
+#'    internal use and should not be called directly
+#' 
+#' @return   A model object of type 'RCOX'.
+#' @keywords models
+#'
+#' @examples
+#' data(math)
+#' gm  = ~al:an:st
+#' vcc = list(~me+st, ~ve+an, ~al)
+#' ecc = list(~me:ve+me:al, ~ve:al+al:st)
+#' 
+#' m1 <- rcox(gm=gm, vcc=vcc, ecc=ecc, data=math, method='matching')
+#' m2 <- rcox(gm=gm, vcc=vcc, ecc=ecc, data=math, method='scoring')
+#' m3 <- rcox(gm=gm, vcc=vcc, ecc=ecc, data=math, method='ipm')
+#' 
+#' m1
+#' m2
+#' m3
+#' 
+#' summary(m1)
+#' summary(m2)
+#' summary(m3)
+#' 
+#' coef(m1)
+#' coef(m2)
+#' coef(m3)
+#' 
+#' vcov(m1)
+#' vcov(m2)
+#' vcov(m3)
+#' 
+
+#' @export
 rcox <- function(gm=NULL, vcc=NULL, ecc=NULL, 
                  type   = c('rcon','rcor'),
                  method = "ipm",
@@ -104,6 +180,7 @@ rcox <- function(gm=NULL, vcc=NULL, ecc=NULL,
   return(ans)
 }
 
+#' @export
 print.rcox <- function(x, ...){
 
   cat(toupper(getSlot(x,"type")), "model: ")

@@ -1,103 +1,51 @@
+########################################################################
+##' @title Compare colour classes of an RCOX model
+##' @description A general function for pairwise comparisons of colour
+##'   classes in an RCOX model, i.e. for testing whether the
+##'   corresponding parameters are significantly different
+##' @author Søren Højsgaard, sorenh@@math.aau.dk
+########################################################################
+##'
+##' @details All colour classes specified in \code{cc1} are compared
+##'   with all those given in \code{cc2} (duplicate entries are not
+##'   compared). If \code{cc2=NULL} (the default) then all colour
+##'   classes specified in \code{cc1} are compared with all colour
+##'   classes in the model except those specified in \code{cc1}. If
+##'   \code{cc1=NULL} (the default) and \code{cc2=NULL} then all
+##'   pairwise comparisons are made.
+##' 
+##' @param object An RCOX model, an object of class 'rcox'
+##' @param cc1,cc2 Lists of colour classes of type 'type', see
+##'   'details' for an explanation of the defaults.
+##' @param type Either "ecc" for edge colour classes or "vcc" for
+##'   vertex colour classes
+##' @param stat Base the comparison on either "wald" for a Wald
+##'   statistic or "dev" for a deviance statistic
+##' @param details Control the amount of output created.
+##' @return A list with entries: \item{tab}{A data frame with the test
+##'   results} \item{cc1, cc2}{Lists of colour classes}
+##' 
+##' @seealso \code{\link{add1.rcox}}, \code{\link{drop1.rcox}},
+##'   \code{\link{stepadd1}}, \code{\link{stepdrop1}},
+##'   \code{\link{join1}}, \code{\link{split1}},
+##'   \code{\link{stepjoin1}}, \code{\link{stepsplit1}}
+##' @keywords htest
+##' @examples
+##' 
+##' data (math)
+##' 
+##' gm  = ~al:an:st
+##' vcc = list(~me+st, ~ve+an, ~al)
+##' ecc = list(~me:ve+me:al, ~ve:al+al:st)
+##' 
+##' m1 <- rcox(gm=gm, vcc=vcc, ecc=ecc, data=math)
+##' m1
+##' 
+##' comparecc(m1, type="vcc")
+##' comparecc(m1, type="ecc")
+##' 
 
-## comparecc2 <- function(object, cc1=NULL, cc2=NULL, type='ecc', stat='wald',
-##                        crit="aic",
-##                        alpha=ifelse(crit=="aic", 0, 0.05),
-##                        headlong = TRUE,
-##                        details=1){
-
-
-    
-##   ## Relevant for Wald:
-##   ##
-##   if (stat=="wald"){
-##     V <- vcov(object)
-##     b <- coef(object)
-##   }
-
-##   ofs    <- ifelse(type=="ecc", length(object$vcc), 0)
-##   cc      <- object[[type]]
-##   #ccnames <- names(cc)
-##   #lcc     <- length(cc)
-
-  
-##   if (is.null(cc1)){
-##     cc1  <- cc;         ##cat("cc1 is NULL. Setting cc1 to all ccs\n")
-##     cc1N <- object$intRep[[paste(type,"V",sep='')]]
-##   }
-##   if (is.null(cc2)){
-##     cc2  <- cc;         ##cat("cc2 is NULL. Setting cc2 to all ccs\n")
-##     cc2N <- object$intRep[[paste(type,"V",sep='')]]
-##   }  
-##   if (is.L(cc1)){
-##     cc1 <- list(cc1);  ##cat("cc1 is a colour class. Changing to colour class list...\n")
-##   }
-##   if (is.L(cc2)){
-##     cc2 <- list(cc2);  ##cat("cc2 is a colour class. Changing to colour class list...\n")
-##   }
-
-##   len1  <- length(cc1)
-##   len2  <- length(cc2)
-##   combs <- combn(len1, 2, simplify=FALSE) # FIXME: a hack...
-  
-##   optModel  <- object
-##   optStat   <- -9999
-##   optCC1    <- obtCC2 <- NULL
-##   statlist  <- list()
-
-##                                         #print(cc1N);  print(cc2N)
-  
-##   for (kk in 1:length(combs)){
-##     ii <- combs[[kk]][1]
-##     jj <- combs[[kk]][2]
-##                                         #cat(sprintf("kk %d ii %d jj %d\n", kk, ii, jj))
-##     if (!setequal(cc1N[[ii]], cc2N[[jj]])){
-      
-##       if (stat=="wald"){
-##         cat("doing Wald")
-##         cstat <- c(.findWald(ii+ofs, jj+ofs,  b,  V), 1)
-##       } else{
-##         cat("doing LR")
-##         switch(type,
-##                "ecc"={
-##                  mtmp <- update(object, joinecc=list(cc1[[ii]], cc2[[jj]]))
-##                },
-##                "vcc"={
-##                  mtmp <- update(object, joinvcc=list(cc1[[ii]], cc2[[jj]]))
-##                })
-##         cstat <- c(-2*(logL(mtmp)-logL(object)), 1) # Deviance for reduction
-##       }
-      
-##       statval  <- compareModel(cstat, crit=crit)
-##       cat("-------------\nstat:", statval,"\n")     
-##       cat("cc1:", ii, paste(unlist(formula2string(names2formula(cc1[[ii]]))),collapse=" "),"\n")
-##       cat("cc2:", jj, paste(unlist(formula2string(names2formula(cc2[[jj]]))),collapse=" "),"\n")
-
-##       if (statval > max(optStat,alpha)){
-##         optStat  <- stat
-##         optii    <- ii
-##         optjj    <- jj
-##         optCC1   <- cc1[[ii]]
-##         optCC2   <- cc1[[jj]]
-##       }
-##       statlist[[kk]] <- stat    
-##       if (headlong && optStat>alpha)
-##         break()
-##     }
-##   }
-  
-##   if (!is.null(optCC1)){
-##     optModel <- update(object, joinecc=list(cc1[[ii]], cc2[[jj]]))
-##   } else {
-##     optModel <- object
-##   }
-  
-##   ans <- list(optCC1=optCC1, optCC2=optCC2, optStat=optStat, optModel=optModel)
-
-##   return(ans)
-  
-## }
-
-
+#' @export
 comparecc <- function(object, cc1=NULL, cc2=NULL, type='ecc', stat='wald', details=1){
   cc      <- getSlot(object,type)
   ccnames <- names(cc)
@@ -208,3 +156,104 @@ comparecc <- function(object, cc1=NULL, cc2=NULL, type='ecc', stat='wald', detai
   ##   ans$p  <- 1-pchisq(ans$X2, df=1)
   ##   ans$aic <- -ans$X2+2
   ##   ans$bic <- -ans$X2+log(n)*ans$df
+
+
+
+
+## comparecc2 <- function(object, cc1=NULL, cc2=NULL, type='ecc', stat='wald',
+##                        crit="aic",
+##                        alpha=ifelse(crit=="aic", 0, 0.05),
+##                        headlong = TRUE,
+##                        details=1){
+
+
+    
+##   ## Relevant for Wald:
+##   ##
+##   if (stat=="wald"){
+##     V <- vcov(object)
+##     b <- coef(object)
+##   }
+
+##   ofs    <- ifelse(type=="ecc", length(object$vcc), 0)
+##   cc      <- object[[type]]
+##   #ccnames <- names(cc)
+##   #lcc     <- length(cc)
+
+  
+##   if (is.null(cc1)){
+##     cc1  <- cc;         ##cat("cc1 is NULL. Setting cc1 to all ccs\n")
+##     cc1N <- object$intRep[[paste(type,"V",sep='')]]
+##   }
+##   if (is.null(cc2)){
+##     cc2  <- cc;         ##cat("cc2 is NULL. Setting cc2 to all ccs\n")
+##     cc2N <- object$intRep[[paste(type,"V",sep='')]]
+##   }  
+##   if (is.L(cc1)){
+##     cc1 <- list(cc1);  ##cat("cc1 is a colour class. Changing to colour class list...\n")
+##   }
+##   if (is.L(cc2)){
+##     cc2 <- list(cc2);  ##cat("cc2 is a colour class. Changing to colour class list...\n")
+##   }
+
+##   len1  <- length(cc1)
+##   len2  <- length(cc2)
+##   combs <- combn(len1, 2, simplify=FALSE) # FIXME: a hack...
+  
+##   optModel  <- object
+##   optStat   <- -9999
+##   optCC1    <- obtCC2 <- NULL
+##   statlist  <- list()
+
+##                                         #print(cc1N);  print(cc2N)
+  
+##   for (kk in 1:length(combs)){
+##     ii <- combs[[kk]][1]
+##     jj <- combs[[kk]][2]
+##                                         #cat(sprintf("kk %d ii %d jj %d\n", kk, ii, jj))
+##     if (!setequal(cc1N[[ii]], cc2N[[jj]])){
+      
+##       if (stat=="wald"){
+##         cat("doing Wald")
+##         cstat <- c(.findWald(ii+ofs, jj+ofs,  b,  V), 1)
+##       } else{
+##         cat("doing LR")
+##         switch(type,
+##                "ecc"={
+##                  mtmp <- update(object, joinecc=list(cc1[[ii]], cc2[[jj]]))
+##                },
+##                "vcc"={
+##                  mtmp <- update(object, joinvcc=list(cc1[[ii]], cc2[[jj]]))
+##                })
+##         cstat <- c(-2*(logL(mtmp)-logL(object)), 1) # Deviance for reduction
+##       }
+      
+##       statval  <- compareModel(cstat, crit=crit)
+##       cat("-------------\nstat:", statval,"\n")     
+##       cat("cc1:", ii, paste(unlist(formula2string(names2formula(cc1[[ii]]))),collapse=" "),"\n")
+##       cat("cc2:", jj, paste(unlist(formula2string(names2formula(cc2[[jj]]))),collapse=" "),"\n")
+
+##       if (statval > max(optStat,alpha)){
+##         optStat  <- stat
+##         optii    <- ii
+##         optjj    <- jj
+##         optCC1   <- cc1[[ii]]
+##         optCC2   <- cc1[[jj]]
+##       }
+##       statlist[[kk]] <- stat    
+##       if (headlong && optStat>alpha)
+##         break()
+##     }
+##   }
+  
+##   if (!is.null(optCC1)){
+##     optModel <- update(object, joinecc=list(cc1[[ii]], cc2[[jj]]))
+##   } else {
+##     optModel <- object
+##   }
+  
+##   ans <- list(optCC1=optCC1, optCC2=optCC2, optStat=optStat, optModel=optModel)
+
+##   return(ans)
+  
+## }

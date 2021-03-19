@@ -1,4 +1,6 @@
 .travis.yml
 .gitignore
 LICENSE
+old_NAMESPACE
 ^appveyor\.yml$
+junk

@@ -1,4 +1,5 @@
 
+#' @export
 update.rcox <- function(object,
                         vcc       = NULL,
                         ecc       = NULL,

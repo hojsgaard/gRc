@@ -5,14 +5,13 @@
 using namespace Rcpp;
 //[[Rcpp::interfaces(r,cpp)]]
 
-
 //[[Rcpp::export]]
 double trAW_(NumericMatrix rA, NumericMatrix rW)
 {
 
   double ans=0;
   int nrA = rA.nrow(), ncA = rA.ncol();
-  int nrW = rW.nrow(), ncW = rW.ncol();
+  int nrW = rW.nrow(); //, ncW = rW.ncol();
 
   int ii, idx;
 
@@ -39,7 +38,7 @@ double trAWB_(NumericMatrix rA, NumericMatrix rW, NumericMatrix rB)
 
   double ans=0;
   int nrA = rA.nrow(), ncA = rA.ncol();
-  int nrW = rW.nrow(), ncW = rW.ncol();
+  int nrW = rW.nrow(); //, ncW = rW.ncol();
   int nrB = rB.nrow(), ncB = rB.ncol();
   
   int i,j;
@@ -115,7 +114,7 @@ double trAWBW_(NumericMatrix rA, NumericMatrix rW, NumericMatrix rB)
 
   double ans=0;
   int nrA = rA.nrow(), ncA = rA.ncol();
-  int nrW = rW.nrow(), ncW = rW.ncol();
+  int nrW = rW.nrow(); //, ncW = rW.ncol();
   int nrB = rB.nrow(), ncB = rB.ncol();
 
   int i,j;
@@ -185,9 +184,9 @@ double trAWBV_(NumericMatrix rA, NumericMatrix rW, NumericMatrix rB, NumericMatr
 
   double ans=0;
   int nrA = rA.nrow(), ncA = rA.ncol();
-  int nrW = rW.nrow(), ncW = rW.ncol();
+  int nrW = rW.nrow(); //, ncW = rW.ncol();
   int nrB = rB.nrow(), ncB = rB.ncol();
-  int nrV = rV.nrow(), ncV = rV.ncol();
+  int nrV = rV.nrow(); //, ncV = rV.ncol();
   
   int i,j;
   int aa,bb,gg,dd;

@@ -116,10 +116,6 @@ getedges <- function(object,complement=FALSE){
   ans
 }
 
-
-
-
-
 print.colourClass <- function(x,...){
   xf <- names2formula(x)
   xs <- formula2string(xf)
@@ -165,3 +161,13 @@ cc2str <- function(cc){
 
 cholSolve <- function(ma)
   chol2inv(chol(  ma  ))
+
+
+#' @export
+logLik.rcox <- function(object, ...){
+  out <- fitInfo(object)$logL
+  attr(out, "df") <- NA
+  attr(out, "dimension") <- dimension(object)
+  class(out) <- "logLik"
+  out
+}

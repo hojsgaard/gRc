@@ -50,18 +50,21 @@ getIndex.character <- function(x, vn){
 ## formula2names
 ##
 
+#' @export
 formula2names <- function(x){
   UseMethod("formula2names")
 }
 
+#' @export
 formula2names.default     <- function(x){
   x
 }
 
+#' @export
 formula2names.NULL     <- function(x){
   
 }
-
+#' @export
 formula2names.list     <- function(x){
   lapply(x, function(x2){
     if (class(x2)=="list") {
@@ -72,6 +75,7 @@ formula2names.list     <- function(x){
   })
 }
 
+#' @export
 formula2names.formula  <- function(x){  
   mf <- paste(deparse(x[[2]]), collapse="")
   mf <- gsub(" +", "", mf)

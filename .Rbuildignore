@@ -4,3 +4,4 @@ LICENSE
 old_NAMESPACE
 ^appveyor\.yml$
 junk
+^CRAN-SUBMISSION$

@@ -7,13 +7,13 @@
 #' @name generating-class
 ######################################################################
 #'
-#' @aliases as.V is.V as.L is.L as.L2 is.L2 matchVL matchLL2 matchVL2
-#'   unionLL unionL2L2 setequalLL setdiffLL addVL2 is.elementVL
-#'   is.subsetLL match.containsLL2
-#'   toLisp toLisp.default toLisp.list toLisp.cc
-#'   listOrder.cc listOrder.atom as.atom as.cc as.cc.list
-#'   as.cc.default as.cclist print.cc print.cclist print.atom
-#'   maximalSetL2
+## ' @aliases as.V is.V as.L is.L as.L2 is.L2 matchVL matchLL2 matchVL2
+## '   unionLL unionL2L2 setequalLL setdiffLL addVL2 is.elementVL
+## '   is.subsetLL match.containsLL2
+## '   toLisp toLisp.default toLisp.list toLisp.cc
+## '   
+## '   as.cc.default as.cclist print.cc print.cclist print.atom
+## '   maximalSetL2
 NULL
 
 as.V <- function(x){
@@ -143,8 +143,8 @@ match.containsLL2 <- function(x,y){
 
 
 
-## For printing in lisp style ((..)(..))...
-##
+#' @title For printing in lisp style
+#' @param v Object to be printed
 
 #' @export
 toLisp <- function(v) {
@@ -168,9 +168,6 @@ toLisp.default <- function(v){
 
 
 
-listOrder.cc    <- listOrder.list
-listOrder.atom  <- listOrder.numeric
-
 as.atom <- function(...){
   x <- unlist(list(...))
   if (length(x)==1)
@@ -180,7 +177,10 @@ as.atom <- function(...){
   x
 }
 
-as.cc <- function(v) UseMethod("as.cc")
+as.cc <- function(v)
+    UseMethod("as.cc")
+
+#' @export
 as.cc.list <- function(v){
   u <- unique(sapply(v,length))
   if (length(u)>1)
@@ -197,6 +197,7 @@ as.cc.list <- function(v){
 }
 
 
+#' @export
 as.cc.default <- function(v){
   as.cc(list(v))
 }
@@ -208,14 +209,17 @@ as.cclist <- function(x){
 }
 
 
+#' @export
 print.cc <- function(x, ...){
   cat(class(x)[1], toLisp(x),"\n")
 }
 
+#' @export
 print.cclist <- function(x,...){
   lapply(x, print)
 }
 
+#' @export
 print.atom <- function(x, ...){
   ##cat(paste("(",paste(x,collapse=','),")",sep=''),"\n")
   cat(toLisp(x),"\n")

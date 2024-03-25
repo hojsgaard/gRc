@@ -34,14 +34,17 @@ getIndex           <- function(x, vn){
   UseMethod('getIndex')
 }
 
+#' @export
 getIndex.default   <- function(x, vn){
   x
 }
 
+#' @export
 getIndex.list      <- function(x, vn){
   lapply(x, function(a) getIndex(a, vn))
 }
 
+#' @export
 getIndex.character <- function(x, vn){
   match(x,vn)
 }
@@ -101,8 +104,10 @@ names2indices <- function(x,vn,matrix=TRUE){
 ##
 names2formula           <- function(x) 
   UseMethod("names2formula")
+#' @export
 names2formula.list      <- function(x) 
   lapply(x, names2formula.default)
+#' @export
 names2formula.default <- function(x){
   if (is.null(x))
     return(NULL)

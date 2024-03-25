@@ -114,6 +114,7 @@ getedges <- function(object,complement=FALSE){
   ans
 }
 
+#' @export
 print.colourClass <- function(x,...){
   xf <- names2formula(x)
   xs <- formula2string(xf)

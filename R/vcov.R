@@ -17,23 +17,23 @@ calculateVCOV <- function(m, K, vcov="boot", nboot=250){
 
 
 
-calculateVCOV <- function(m, K, vcov="boot", nboot=250){
-  vn  <- unlist(lapply(getcc(m),names))
-  V <- solve(getScore(m, K=K)$J)
+## calculateVCOV <- function(m, K, vcov="boot", nboot=250){
+##   vn  <- unlist(lapply(getcc(m),names))
+##   V <- solve(getScore(m, K=K)$J)
   
-#   switch(vcov,
-#          "boot"={
-#            #cat(".bootstrapVCOV", nboot, "\n")
-#            V <- .bootstrapVCOV(m,K,nboot)
-#          },
-#          "inf" ={
-#            #cat("scoreVar", nboot, "\n")
-#            V <- solve(getScore(m,K=K)$J)
-#          }
-#          )
-  dimnames(V) <- list(vn,vn)  
-  V
-}
+## #   switch(vcov,
+## #          "boot"={
+## #            #cat(".bootstrapVCOV", nboot, "\n")
+## #            V <- .bootstrapVCOV(m,K,nboot)
+## #          },
+## #          "inf" ={
+## #            #cat("scoreVar", nboot, "\n")
+## #            V <- solve(getScore(m,K=K)$J)
+## #          }
+## #          )
+##   dimnames(V) <- list(vn,vn)  
+  ## V
+## }
 
 
 

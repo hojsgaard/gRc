@@ -139,8 +139,8 @@ ecc2edges <- function(x){
 }
 
 
-## Fragile........
-cc2formula <- function(cc){
-  v<-as.formula(paste("~", paste(unlist(lapply(lapply(cc, unlist), paste, collapse=":")),collapse="+")))
-  v
-}
+## ## Fragile........
+## cc2formula <- function(cc){
+##   v<-as.formula(paste("~", paste(unlist(lapply(lapply(cc, unlist), paste, collapse=":")),collapse="+")))
+##   v
+## }

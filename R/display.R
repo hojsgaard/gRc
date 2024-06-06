@@ -52,6 +52,6 @@ plot.rcox <- function(x, y, ...){
     V(gg)$color[unlist(idx)]     <- cols
     
     plot(gg)
-
+    return(invisible(gg))
     
 }

@@ -33,14 +33,14 @@ is.L <- function(x){
   is.list(x) && all(sapply(x, is.V)) 
 }
 
-## as.L2 <- function(x){
-##     if (!is.L2(x)) stop("Can not create L2\n")
-##     as.cclist(x)
-## }
+as.L2 <- function(x){
+    if (!is.L2(x)) stop("Can not create L2\n")
+    as.cclist(x)
+}
 
-## is.L2 <- function(x){
-##   is.list(x) && all(sapply(x, is.L)) 
-## }
+is.L2 <- function(x){
+  is.list(x) && all(sapply(x, is.L)) 
+}
 
 ## Matching
 ##
@@ -76,14 +76,12 @@ matchLL2 <- function(x,y){
 ##   as.cc(unique(listOrder(c(x, y))))
 ## }
 
-## unionL2L2 <- function(x,y){
-##   if (length(y)==0)
-##     return(x)
-##   v<-unique(listOrder(c(x,y)))
-##   as.L2(v)
-## }
-
-
+unionL2L2 <- function(x,y){
+  if (length(y)==0)
+    return(x)
+  v<-unique(listOrder(c(x,y)))
+  as.L2(v)
+}
 
 ## Miscellaneous
 setequalLL <- function(x,y){
@@ -127,19 +125,19 @@ setdiffLL <- function(x,y){
 ## }
 
 
-## is.elementVL <- function(x,y)
-##   !is.na(matchVL(x,y))
+is.elementVL <- function(x,y)
+  !is.na(matchVL(x,y))
   
-## is.subsetLL <- function(x,y){
-##   all(sapply(x, function(ee) is.elementVL(ee,y)))
-## }
+is.subsetLL <- function(x,y){
+  all(sapply(x, function(ee) is.elementVL(ee,y)))
+}
 
-## match.containsLL2 <- function(x,y){
-##   x<- which(sapply(y, function(yy) is.subsetLL(x,yy))  )
-##   if (length(x)==0)
-##     return(NA)
-##   x
-## }
+match.containsLL2 <- function(x,y){
+  x<- which(sapply(y, function(yy) is.subsetLL(x,yy))  )
+  if (length(x)==0)
+    return(NA)
+  x
+}
 
 
 
@@ -202,12 +200,11 @@ as.cc.default <- function(v){
   as.cc(list(v))
 }
 
-## as.cclist <- function(x){
-##   if ("cc" %in% class(x[[1]]))
-##   class(x) <- 'cclist'
-##   x
-## }
-
+as.cclist <- function(x){
+  if ("cc" %in% class(x[[1]]))
+  class(x) <- 'cclist'
+  x
+}
 
 #' @export
 print.cc <- function(x, ...){
